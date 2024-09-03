@@ -1,0 +1,40 @@
+.skills-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    overflow: hidden; /* Oculta las habilidades fuera del contenedor visible */
+    position: relative;
+    width: 400px; /* Ancho fijo para controlar el desplazamiento */
+  }
+  
+  .skill {
+    min-width: 120px;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .slide-left {
+    animation: slide-left 0.5s ease-in-out forwards;
+  }
+  
+  .slide-right {
+    animation: slide-right 0.5s ease-in-out forwards;
+  }
+  
+  @keyframes slide-left {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-120px);
+    }
+  }
+  
+  @keyframes slide-right {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(120px);
+    }
+  }
+  

@@ -1,0 +1,10 @@
+/* Languages.css */
+
+.languages {
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .languages:hover {
+    transform: scale(1.02);
+  }
+  

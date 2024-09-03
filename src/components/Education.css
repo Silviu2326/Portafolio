@@ -1,0 +1,7 @@
+/* Education.css */
+
+.school:hover {
+    transform: scale(1.02);
+    box-shadow: 0px 6px 10px rgba(0, 170, 255, 0.4); /* Sombra brillante al pasar el mouse */
+  }
+  
