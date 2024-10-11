@@ -1,40 +1,101 @@
+.skills {
+  padding: 40px 20px;
+  background-color: #0a192f;
+  color: #8892b0;
+}
+
+.skills-slider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+}
+
 .skills-container {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 600px;
+}
+
+.skill {
+  width: 150px;
+  transition: transform 0.5s ease-in-out;
+}
+
+.skill-name {
+  margin-top: 10px;
+  font-size: 1.2em;
+  color: #ccd6f6;
+  text-align: center;
+}
+
+.nav-button {
+  background: none;
+  border: none;
+  font-size: 2em;
+  color: #00aaff;
+  cursor: pointer;
+  padding: 0 10px;
+  transition: color 0.3s ease;
+}
+
+.nav-button:hover {
+  color: #64ffda;
+}
+
+.slide-left {
+  animation: slide-left 0.5s ease-in-out forwards;
+}
+
+.slide-right {
+  animation: slide-right 0.5s ease-in-out forwards;
+}
+
+@keyframes slide-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-180px);
+  }
+}
+
+@keyframes slide-right {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(180px);
+  }
+}
+
+@media (max-width: 768px) {
+  .skills-container {
     gap: 20px;
-    overflow: hidden; /* Oculta las habilidades fuera del contenedor visible */
-    position: relative;
-    width: 400px; /* Ancho fijo para controlar el desplazamiento */
   }
-  
+
   .skill {
-    min-width: 120px;
-    transition: transform 0.5s ease-in-out;
+    width: 120px;
   }
-  
-  .slide-left {
-    animation: slide-left 0.5s ease-in-out forwards;
-  }
-  
-  .slide-right {
-    animation: slide-right 0.5s ease-in-out forwards;
-  }
-  
+
   @keyframes slide-left {
     from {
       transform: translateX(0);
     }
     to {
-      transform: translateX(-120px);
+      transform: translateX(-140px);
     }
   }
-  
+
   @keyframes slide-right {
     from {
       transform: translateX(0);
     }
     to {
-      transform: translateX(120px);
+      transform: translateX(140px);
     }
   }
-  
+}

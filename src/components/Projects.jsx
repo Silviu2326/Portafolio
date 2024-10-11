@@ -1,102 +1,109 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Code, Server, Database } from 'lucide-react';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from 'react-responsive-carousel';
+
+import imagen1 from './Capturadepantalla2024-09-03202317.png';
+import imagen2 from './Captura de pantalla 2024-09-03 204908.png';
+import imagen3 from './Captura de pantalla 2024-09-03 204929.png';
+import imagen4 from './Captura de pantalla 2024-09-03 204941.png';
+import imagen5 from './Captura de pantalla 2024-09-03 205016.png';
+import imagen6 from './Captura de pantalla 2024-09-03 205115.png';
+import imagen7 from './Captura de pantalla 2024-09-03 205130.png';
+import imagen8 from './Captura de pantalla 2024-09-03 213217.png';
+import imagen9 from './Captura de pantalla 2024-09-03 213231.png';
+import imagen10 from './Captura de pantalla 2024-09-03 213242.png';
+import imagen11 from './Captura de pantalla 2024-09-03 213253.png';
 
 const Projects = () => {
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      },
+      {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1,
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
   return (
-    <section style={styles.projects}>
-      <h2 style={styles.heading}>Proyectos</h2>
+    <section ref={sectionRef} className="projects">
+      <h2>Proyectos</h2>
       
-      <div style={styles.projectItem}>
-        <Code color="#00aaff" size={48} />
-        <div style={styles.projectContent}>
-          <h3 style={styles.projectTitle}>Algoritmo de Extracción de Datos - Orange</h3>
-          <p style={styles.projectDescription}>
-            Desarrollé un algoritmo de extracción de datos utilizando técnicas de web scraping con Python. Este proyecto fue parte de mi trabajo en Orange, donde automatizamos la recolección de datos críticos para análisis de mercado.
+      <div className="project-item">
+        <Code className="project-icon" color="#00aaff" size={48} />
+        <div className="project-content">
+          <h3>Algoritmo de Extracción de Datos - Orange</h3>
+          <p>
+            Desarrollé un algoritmo avanzado de extracción de datos utilizando técnicas de web scraping con Python. El objetivo principal era recolectar datos críticos de clientes para la empresa Orange, con el fin de realizar análisis de mercado más precisos. El algoritmo fue diseñado para iterar sobre cada cliente, teniendo en cuenta que algunos datos podrían no estar disponibles en todos los casos. Los datos recopilados se almacenaban en hojas de Excel para garantizar la privacidad y seguridad de la información sensible.
           </p>
-          <a href="https://github.com/tu-usuario/algoritmo-extraccion-datos" target="_blank" rel="noreferrer" style={styles.projectLink}>Ver proyecto</a>
+          <a href="https://github.com/tu-usuario/algoritmo-extraccion-datos" target="_blank" rel="noreferrer" className="project-link">Ver proyecto</a>
         </div>
       </div>
 
-      <div style={styles.projectItem}>
-        <Server color="#00aaff" size={48} />
-        <div style={styles.projectContent}>
-          <h3 style={styles.projectTitle}>CRM para Entrenadores Personales</h3>
-          <p style={styles.projectDescription}>
-            Creé un CRM completo para entrenadores personales, utilizando React en el frontend y Node.js en el backend. La aplicación permite la gestión de clientes, planificación de entrenamientos, y seguimiento del progreso.
+      <div className="project-item">
+        <Server className="project-icon" color="#00aaff" size={48} />
+        <div className="project-content">
+          <h3>CRM para Entrenadores Personales</h3>
+          <p>
+            Desarrollé un CRM robusto diseñado específicamente para entrenadores personales, incorporando tres módulos clave: Marketing, Finanzas y Ejercicios y Dietas. La aplicación está construida con React en el frontend, Node.js en el backend y MongoDB como base de datos.
           </p>
-          <a href="https://github.com/tu-usuario/crm-entrenadores" target="_blank" rel="noreferrer" style={styles.projectLink}>Ver proyecto</a>
+          <p>
+            El módulo de Marketing permite a los entrenadores gestionar sus campañas y estrategias de marketing. El módulo de Finanzas es altamente personalizable, integrando funcionalidades avanzadas mediante widgets y se conecta con APIs como Plaid para ofrecer un seguimiento financiero detallado. El módulo de Ejercicios y Dietas permite la creación de planes personalizados utilizando la API de OpenAI para generar recomendaciones inteligentes.
+          </p>
+          <div className="carousel-container">
+            <Carousel showThumbs={false} autoPlay infiniteLoop>
+              {[imagen1, imagen2, imagen3, imagen4, imagen5, imagen6, imagen7].map((img, index) => (
+                <div key={index}>
+                  <img src={img} alt={`Captura de pantalla ${index + 1}`} />
+                </div>
+              ))}
+            </Carousel>
+          </div>
+          <a href="https://github.com/tu-usuario/crm-entrenadores" target="_blank" rel="noreferrer" className="project-link">Ver proyecto</a>
         </div>
       </div>
 
-      <div style={styles.projectItem}>
-        <Database color="#00aaff" size={48} />
-        <div style={styles.projectContent}>
-          <h3 style={styles.projectTitle}>SaaS para Gestión Alimentaria</h3>
-          <p style={styles.projectDescription}>
-            Desarrollé un SaaS para la gestión alimentaria utilizando React y Node.js. La plataforma permite a los usuarios gestionar dietas, registrar alimentos, y obtener análisis nutricionales detallados.
+      <div className="project-item">
+        <Database className="project-icon" color="#00aaff" size={48} />
+        <div className="project-content">
+          <h3>SaaS para Gestión Alimentaria</h3>
+          <p>
+            Desarrollé un SaaS innovador para la gestión alimentaria, utilizando React y Node.js como las tecnologías principales, junto con MongoDB para el almacenamiento de datos. Esta plataforma está diseñada para ayudar a los usuarios a gestionar de manera integral su alimentación, ofreciendo herramientas para la planificación y el seguimiento de dietas.
           </p>
-          <a href="https://github.com/tu-usuario/saas-gestion-alimentaria" target="_blank" rel="noreferrer" style={styles.projectLink}>Ver proyecto</a>
+          <p>
+            La aplicación permite a los usuarios crear y personalizar planes de dieta, registrar alimentos diarios, y ofrece análisis detallados del progreso del usuario hacia sus metas de salud y bienestar.
+          </p>
+          <div className="carousel-container">
+            <Carousel showThumbs={false} autoPlay infiniteLoop>
+              {[imagen8, imagen9, imagen10, imagen11].map((img, index) => (
+                <div key={index}>
+                  <img src={img} alt={`Captura de pantalla ${index + 8}`} />
+                </div>
+              ))}
+            </Carousel>
+          </div>
         </div>
       </div>
     </section>
   );
-};
-
-const styles = {
-  projects: {
-    padding: '40px 20px',
-    background: 'linear-gradient(182deg, rgb(0, 0, 0), rgb(11, 37, 68))',
-    boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.3)',
-    color: 'white',
-    textAlign: 'left',
-  },
-  heading: {
-    fontSize: '2em',
-    marginBottom: '20px',
-    color: '#fff',
-    textShadow: '2px 2px 4px rgba(255, 255, 255, 0.3)',
-  },
-  projectItem: {
-    display: 'flex',
-    alignItems: 'center',
-    marginBottom: '30px',
-    padding: '20px',
-    border: '2px solid rgb(89 68 241)',  // Borde alrededor de cada proyecto
-    borderRadius: '8px',
-    transition: 'transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out',
-  },
-  projectItemHovered: {
-    transform: 'scale(1.02)',
-    boxShadow: '0px 6px 10px rgba(0, 170, 255, 0.4)', // Sombra brillante al pasar el mouse
-  },
-  projectContent: {
-    marginLeft: '20px',
-  },
-  projectTitle: {
-    fontSize: '1.5em',
-    marginBottom: '10px',
-    color: '#fff',
-  },
-  projectDescription: {
-    fontSize: '1.2em',
-    lineHeight: '1.6',
-    color: '#dcdcdc',
-    marginBottom: '10px',
-  },
-  projectLink: {
-    display: 'inline-block',
-    padding: '8px 16px',
-    color: '#00aaff',
-    textDecoration: 'none',
-    fontWeight: 'bold',
-    border: '2px solid #00aaff',
-    borderRadius: '4px',
-    transition: 'background-color 0.3s ease-in-out, color 0.3s ease-in-out',
-  },
-  projectLinkHovered: {
-    backgroundColor: '#00aaff',
-    color: '#fff',
-  },
 };
 
 export default Projects;

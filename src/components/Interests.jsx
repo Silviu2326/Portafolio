@@ -1,65 +1,57 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Cpu, Book, Briefcase } from 'lucide-react';
-import './Interests.css'; // Importamos el archivo CSS para estilos adicionales
+import './Interests.css';
 
 const Interests = () => {
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      },
+      {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1,
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
   return (
-    <section style={styles.interests}>
-      <h2 style={styles.heading}>Intereses</h2>
-      <p style={styles.paragraph}>
+    <section ref={sectionRef} className="interests">
+      <h2>Intereses</h2>
+      <p className="interests-description">
         Me apasiona la tecnología, la inteligencia artificial, y el desarrollo de software. En mi tiempo libre, disfruto aprendiendo sobre nuevas tecnologías, leyendo libros de ciencia ficción, y explorando el mundo de los negocios.
       </p>
-      <div style={styles.iconsContainer}>
-        <div style={styles.iconWrapper}>
-          <Cpu color="#00aaff" size={48} />
-          <p style={styles.iconLabel}>IA</p>
+      <div className="interests-icons">
+        <div className="interest-item">
+          <Cpu className="interest-icon" />
+          <p>IA</p>
         </div>
-        <div style={styles.iconWrapper}>
-          <Book color="#00aaff" size={48} />
-          <p style={styles.iconLabel}>Leer</p>
+        <div className="interest-item">
+          <Book className="interest-icon" />
+          <p>Leer</p>
         </div>
-        <div style={styles.iconWrapper}>
-          <Briefcase color="#00aaff" size={48} />
-          <p style={styles.iconLabel}>Negocios</p>
+        <div className="interest-item">
+          <Briefcase className="interest-icon" />
+          <p>Negocios</p>
         </div>
       </div>
     </section>
   );
-};
-
-const styles = {
-  interests: {
-    padding: '40px 20px',
-    background: 'linear-gradient(182deg, rgb(0, 0, 0), rgb(11, 37, 68))',
-    boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.3)',
-    color: 'white',
-    textAlign: 'left',
-  },
-  heading: {
-    fontSize: '2em',
-    marginBottom: '20px',
-    color: '#fff',
-    textShadow: '2px 2px 4px rgba(255, 255, 255, 0.3)',
-  },
-  paragraph: {
-    fontSize: '1.2em',
-    lineHeight: '1.6',
-    color: '#dcdcdc',
-    marginBottom: '20px',
-  },
-  iconsContainer: {
-    display: 'flex',
-    justifyContent: 'space-around',
-    marginTop: '20px',
-  },
-  iconWrapper: {
-    textAlign: 'center',
-  },
-  iconLabel: {
-    marginTop: '10px',
-    fontSize: '1.1em',
-    color: '#00aaff',
-  },
 };
 
 export default Interests;

@@ -1,8 +1,13 @@
-import React from 'react';
-import './Header.css'; // Importamos el archivo CSS actualizado
+import React, { useEffect } from 'react';
 import { Linkedin, Github } from 'lucide-react';
+import './Header.css';
 
 const Header = () => {
+  useEffect(() => {
+    const header = document.querySelector('.header');
+    header.classList.add('visible');
+  }, []);
+
   return (
     <header className="header">
       <h1 className="name">Silviu Oprescu</h1>
@@ -12,6 +17,7 @@ const Header = () => {
           href="https://www.linkedin.com/in/silviuoprescu/" 
           target="_blank" 
           rel="noreferrer"
+          className="social-link"
         >
           <Linkedin className="icon" /> LinkedIn
         </a>
@@ -19,6 +25,7 @@ const Header = () => {
           href="https://github.com/silviu-oprescu" 
           target="_blank" 
           rel="noreferrer"
+          className="social-link"
         >
           <Github className="icon" /> GitHub
         </a>

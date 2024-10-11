@@ -1,0 +1,41 @@
+.footer {
+    background-color: #0a192f;
+    color: #8892b0;
+    padding: 40px 20px;
+    text-align: center;
+    border-top: 1px solid #1d2d50;
+  }
+  
+  .contact-item {
+    display: inline-flex;
+    align-items: center;
+    margin: 10px 20px;
+  }
+  
+  .contact-icon {
+    color: #00aaff;
+    margin-right: 10px;
+  }
+  
+  .contact-link {
+    color: #64ffda;
+    text-decoration: none;
+    font-size: 1.1em;
+    transition: color 0.3s ease;
+  }
+  
+  .contact-link:hover {
+    color: #00aaff;
+  }
+  
+  @media (max-width: 768px) {
+    .footer {
+      padding: 30px 10px;
+    }
+  
+    .contact-item {
+      display: flex;
+      justify-content: center;
+      margin: 15px 0;
+    }
+  }
