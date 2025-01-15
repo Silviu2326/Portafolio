@@ -15,7 +15,7 @@ const Footer = () => {
       </div>
       <div className="contact-item">
         <FileText className="contact-icon" />
-        <a href="/curriculum.pdf" target="_blank" rel="noreferrer" className="contact-link">Descargar CV</a>
+        <a href="/curriculum.pdf" download="curriculum.pdf" target="_blank" rel="noreferrer" className="contact-link">Descargar CV</a>
       </div>
     </footer>
   );

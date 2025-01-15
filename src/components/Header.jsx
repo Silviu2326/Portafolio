@@ -6,6 +6,34 @@ const Header = () => {
   useEffect(() => {
     const header = document.querySelector('.header');
     header.classList.add('visible');
+
+    // Crear partículas
+    const createParticle = () => {
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      
+      // Posición aleatoria en el eje X
+      const x = Math.random() * window.innerWidth;
+      particle.style.left = `${x}px`;
+      particle.style.bottom = '-10px';
+      
+      // Duración aleatoria de la animación
+      const duration = 3000 + Math.random() * 2000;
+      particle.style.animation = `particleAnimation ${duration}ms linear`;
+      
+      header.appendChild(particle);
+      
+      // Eliminar la partícula cuando termine la animación
+      setTimeout(() => {
+        particle.remove();
+      }, duration);
+    };
+
+    // Crear partículas periódicamente
+    const particleInterval = setInterval(createParticle, 200);
+
+    // Limpiar el intervalo cuando el componente se desmonte
+    return () => clearInterval(particleInterval);
   }, []);
 
   return (

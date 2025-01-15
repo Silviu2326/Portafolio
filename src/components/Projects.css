@@ -1,0 +1,312 @@
+.projects {
+  padding: 4rem 2rem;
+  background: linear-gradient(180deg, rgba(10, 25, 47, 0.95) 0%, rgba(17, 34, 64, 0.95) 100%);
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.projects::before {
+  content: '<projects>';
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  color: rgba(100, 255, 218, 0.3);
+  font-family: monospace;
+  font-size: 1rem;
+  animation: fadeInTags 1s ease forwards;
+}
+
+.projects::after {
+  content: '</projects>';
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  color: rgba(100, 255, 218, 0.3);
+  font-family: monospace;
+  font-size: 1rem;
+  animation: fadeInTags 1s ease forwards;
+}
+
+.projects h2 {
+  color: #ccd6f6;
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  text-align: center;
+  position: relative;
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.project-item {
+  max-width: 1000px;
+  margin: 0 auto 4rem;
+  padding: 2rem;
+  background: rgba(17, 34, 64, 0.7);
+  border-radius: 16px;
+  border: 1px solid rgba(100, 255, 218, 0.1);
+  backdrop-filter: blur(10px);
+  transform: translateY(30px);
+  opacity: 0;
+  animation: projectAppear 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.project-item:hover {
+  transform: translateY(-10px);
+  border-color: rgba(100, 255, 218, 0.3);
+  box-shadow: 
+    0 10px 30px rgba(100, 255, 218, 0.1),
+    0 0 0 1px rgba(100, 255, 218, 0.1);
+}
+
+.project-item:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.project-item:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+.project-icon {
+  margin-bottom: 1.5rem;
+  animation: iconFloat 3s ease-in-out infinite;
+}
+
+.project-content {
+  color: #8892b0;
+}
+
+.project-content h3 {
+  color: #64ffda;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.project-content p {
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+}
+
+.project-link {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background: rgba(100, 255, 218, 0.1);
+  color: #64ffda;
+  text-decoration: none;
+  border-radius: 8px;
+  border: 1px solid rgba(100, 255, 218, 0.3);
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.project-link:hover {
+  background: rgba(100, 255, 218, 0.2);
+  transform: translateY(-2px);
+}
+
+.carousel-container {
+  margin: 2rem 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.carousel .slide img {
+  border-radius: 8px;
+  border: 1px solid rgba(100, 255, 218, 0.2);
+}
+
+.carousel .control-arrow {
+  background: rgba(17, 34, 64, 0.8) !important;
+  backdrop-filter: blur(5px);
+  padding: 1.5rem !important;
+  transition: all 0.3s ease !important;
+}
+
+.carousel .control-arrow:hover {
+  background: rgba(100, 255, 218, 0.2) !important;
+}
+
+.carousel .control-dots .dot {
+  background: #64ffda !important;
+  box-shadow: none !important;
+  opacity: 0.5;
+}
+
+.carousel .control-dots .dot.selected {
+  opacity: 1;
+}
+
+.technologies-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin: 1.5rem 0;
+}
+
+.tech-tag {
+  padding: 0.5rem 1rem;
+  background: rgba(100, 255, 218, 0.1);
+  color: #64ffda;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  border: 1px solid rgba(100, 255, 218, 0.2);
+}
+
+.tech-tag:hover {
+  background: rgba(100, 255, 218, 0.2);
+  transform: translateY(-2px);
+}
+
+.tech-tooltip {
+  position: absolute;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(17, 34, 64, 0.95);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  color: #8892b0;
+  white-space: nowrap;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(100, 255, 218, 0.2);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+  opacity: 0;
+  animation: tooltipAppear 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.tech-tooltip::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 10px;
+  height: 10px;
+  background: rgba(17, 34, 64, 0.95);
+  border: 1px solid rgba(100, 255, 218, 0.2);
+  border-top: none;
+  border-left: none;
+}
+
+.project-links {
+  display: flex;
+  gap: 1rem;
+  margin-left: auto;
+}
+
+.icon-link {
+  color: #64ffda;
+  transition: all 0.3s ease;
+  opacity: 0.7;
+}
+
+.icon-link:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+@keyframes projectAppear {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes iconFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes fadeInTags {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes tooltipAppear {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+  .projects {
+    padding: 3rem 1rem;
+  }
+
+  .projects h2 {
+    font-size: 2rem;
+  }
+
+  .project-item {
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .project-content h3 {
+    font-size: 1.3rem;
+  }
+
+  .project-content p {
+    font-size: 1rem;
+  }
+
+  .carousel .control-arrow {
+    padding: 1rem !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .project-item {
+    padding: 1rem;
+  }
+
+  .project-content h3 {
+    font-size: 1.2rem;
+  }
+
+  .project-link {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+}
