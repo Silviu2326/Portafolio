@@ -1,9 +1,10 @@
-import React, { useEffect, useRef } from 'react';
-import { Briefcase, Calendar, Code } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
+import { Briefcase, Calendar, Code, Building2, ExternalLink, GitBranch } from 'lucide-react';
 import './Experience.css';
 
 const Experience = () => {
   const sectionRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -14,7 +15,7 @@ const Experience = () => {
       },
       {
         root: null,
-        rootMargin: '0px',
+        rootMargin: '-50px',
         threshold: 0.1,
       }
     );
@@ -34,45 +35,105 @@ const Experience = () => {
     {
       title: "Desarrollador Frontend",
       company: "Orange",
+      companyUrl: "https://www.orange.es",
       period: "Enero 2024 - Mayo 2024",
-      description: "En Orange, formé parte de un equipo dedicado a la creación y mantenimiento de aplicaciones web interactivas. Utilicé React para desarrollar interfaces de usuario dinámicas y responsivas, asegurando una experiencia de usuario fluida. También colaboré estrechamente con el equipo de diseño para implementar componentes reutilizables y optimizar el rendimiento de la aplicación.",
-      technologies: ["React", "JavaScript", "HTML5", "CSS3", "Git", "Agile"]
+      description: [
+        "Desarrollo de interfaces de usuario dinámicas y responsivas utilizando React y tecnologías modernas.",
+        "Colaboración estrecha con el equipo de diseño para implementar componentes reutilizables.",
+        "Optimización del rendimiento de aplicaciones web y mejora de la experiencia de usuario.",
+        "Participación en reuniones de planificación y revisión de código con el equipo."
+      ],
+      technologies: [
+        { name: "React", icon: <Code size={14} /> },
+        { name: "JavaScript", icon: <Code size={14} /> },
+        { name: "HTML5", icon: <Code size={14} /> },
+        { name: "CSS3", icon: <Code size={14} /> },
+        { name: "Git", icon: <GitBranch size={14} /> },
+        { name: "Agile", icon: <Code size={14} /> }
+      ]
     },
     {
       title: "Desarrollador Full Stack",
       company: "Freelance",
       period: "Junio 2023 - Diciembre 2023, Mayo 2024 - Actualidad",
-      description: "Como freelance, trabajé en diversos proyectos para clientes de diferentes sectores. Desarrollé aplicaciones completas utilizando tecnologías como Node.js, Express y MongoDB en el backend, y React en el frontend. Mi rol incluyó desde la planificación y diseño hasta la implementación y el despliegue, siempre buscando entregar productos de alta calidad que cumplieran con los requisitos del cliente.",
-      technologies: ["React", "Node.js", "Express", "MongoDB", "UI/UX", "Responsive Design"]
+      description: [
+        "Desarrollo de aplicaciones web completas utilizando el stack MERN (MongoDB, Express, React, Node.js).",
+        "Diseño e implementación de arquitecturas escalables y mantenibles.",
+        "Gestión directa con clientes y planificación de proyectos.",
+        "Implementación de diseños responsivos y optimización para diferentes dispositivos."
+      ],
+      technologies: [
+        { name: "React", icon: <Code size={14} /> },
+        { name: "Node.js", icon: <Code size={14} /> },
+        { name: "Express", icon: <Code size={14} /> },
+        { name: "MongoDB", icon: <Code size={14} /> },
+        { name: "UI/UX", icon: <Code size={14} /> },
+        { name: "Responsive", icon: <Code size={14} /> }
+      ]
     }
   ];
 
   return (
     <section ref={sectionRef} className="experience">
-      <h2>Experiencia</h2>
-      <div className="timeline">
-        {experiences.map((exp, index) => (
-          <div className="timeline-item" key={index}>
-            <div className="timeline-item-content">
-              <h3>
-                <Briefcase size={20} style={{ marginRight: '10px', verticalAlign: 'middle' }} />
-                {exp.title} - {exp.company}
-              </h3>
-              <p className="date">
-                <Calendar size={16} style={{ marginRight: '5px', verticalAlign: 'middle' }} />
-                {exp.period}
-              </p>
-              <p>{exp.description}</p>
-              <div className="tech-tags">
-                {exp.technologies.map((tech, techIndex) => (
-                  <span className="tech-tag" key={techIndex}>
-                    <Code size={14} />
-                    {tech}
-                  </span>
-                ))}
+      <div className="experience-container">
+        <h2 className="section-title">
+          <span className="title-number">02.</span> Experiencia Profesional
+        </h2>
+
+        <div className="timeline">
+          {experiences.map((exp, index) => (
+            <div 
+              className={`timeline-item ${activeIndex === index ? 'active' : ''}`}
+              key={index}
+              onMouseEnter={() => setActiveIndex(index)}
+            >
+              <div className="timeline-item-content">
+                <div className="experience-header">
+                  <h3>
+                    <Briefcase className="icon" />
+                    <span>{exp.title}</span>
+                  </h3>
+                  <div className="company-info">
+                    <Building2 className="icon" />
+                    {exp.companyUrl ? (
+                      <a href={exp.companyUrl} target="_blank" rel="noopener noreferrer" className="company-link">
+                        {exp.company} <ExternalLink size={14} />
+                      </a>
+                    ) : (
+                      <span>{exp.company}</span>
+                    )}
+                  </div>
+                  <div className="date">
+                    <Calendar className="icon" />
+                    <span>{exp.period}</span>
+                  </div>
+                </div>
+
+                <div className="experience-description">
+                  <ul>
+                    {exp.description.map((item, itemIndex) => (
+                      <li key={itemIndex}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="tech-tags">
+                  {exp.technologies.map((tech, techIndex) => (
+                    <span className="tech-tag" key={techIndex}>
+                      {tech.icon}
+                      <span>{tech.name}</span>
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="background-grid">
+        {[...Array(20)].map((_, i) => (
+          <div key={i} className="grid-item" />
         ))}
       </div>
     </section>

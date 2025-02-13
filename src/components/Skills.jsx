@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
-import { ChevronLeft, ChevronRight, Code, Zap } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Code, Zap, Star, GitBranch, Globe } from 'lucide-react';
 import 'react-circular-progressbar/dist/styles.css';
 import './Skills.css';
 
@@ -9,43 +9,57 @@ const skillsData = [
     name: 'HTML', 
     percentage: 95,
     color: '#E34F26',
-    description: 'Estructuración semántica, accesibilidad, SEO'
+    description: 'Estructuración semántica, accesibilidad, SEO',
+    icon: Globe,
+    features: ['HTML5', 'SEO', 'Accesibilidad', 'Semántica']
   },
   { 
     name: 'CSS', 
     percentage: 90,
     color: '#1572B6',
-    description: 'Diseño responsive, animaciones, Flexbox/Grid'
+    description: 'Diseño responsive, animaciones, Flexbox/Grid',
+    icon: Star,
+    features: ['Flexbox', 'Grid', 'Animaciones', 'Sass']
   },
   { 
     name: 'JavaScript', 
     percentage: 85,
     color: '#F7DF1E',
-    description: 'ES6+, DOM, APIs, async/await'
+    description: 'ES6+, DOM, APIs, async/await',
+    icon: Code,
+    features: ['ES6+', 'DOM', 'APIs', 'Async']
   },
   { 
     name: 'React', 
     percentage: 80,
     color: '#61DAFB',
-    description: 'Hooks, Context, Redux, Next.js'
+    description: 'Hooks, Context, Redux, Next.js',
+    icon: Code,
+    features: ['Hooks', 'Context', 'Redux', 'Next.js']
   },
   { 
     name: 'Node.js', 
     percentage: 75,
     color: '#339933',
-    description: 'Express, APIs RESTful, MongoDB'
+    description: 'Express, APIs RESTful, MongoDB',
+    icon: GitBranch,
+    features: ['Express', 'REST', 'MongoDB', 'JWT']
   },
   { 
     name: 'Python', 
     percentage: 70,
     color: '#3776AB',
-    description: 'Django, Flask, Data Science'
+    description: 'Django, Flask, Data Science',
+    icon: Code,
+    features: ['Django', 'Flask', 'NumPy', 'Pandas']
   },
   { 
     name: 'Git', 
     percentage: 80,
     color: '#F05032',
-    description: 'Control de versiones, colaboración'
+    description: 'Control de versiones, colaboración',
+    icon: GitBranch,
+    features: ['GitHub', 'GitFlow', 'CI/CD', 'Branches']
   }
 ];
 
@@ -56,28 +70,9 @@ const Skills = () => {
   const [isHovered, setIsHovered] = useState(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      },
-      {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1,
-      }
-    );
-
     if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+      sectionRef.current.classList.add('visible');
     }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
   }, []);
 
   const handleNext = () => {
@@ -105,90 +100,88 @@ const Skills = () => {
   };
 
   return (
-    <section ref={sectionRef} className="skills">
+    <section ref={sectionRef} className="skills" aria-label="Habilidades técnicas">
+      <div className="skills-background">
+        <div className="skills-grid"></div>
+      </div>
       <h2>
-        <Zap className="icon" size={32} style={{ marginRight: '10px', verticalAlign: 'middle' }} />
+        <Zap className="icon" size={32} aria-hidden="true" />
         Habilidades
       </h2>
-      <div className="skills-slider">
-        <button className="nav-button prev" onClick={handlePrev} aria-label="Previous skill">
+      <div className="skills-slider" role="region" aria-label="Carrusel de habilidades">
+        <button 
+          className="nav-button prev" 
+          onClick={handlePrev} 
+          aria-label="Habilidad anterior"
+        >
           <ChevronLeft size={24} />
         </button>
         <div className="skills-container">
-          {getVisibleSkills().map((skill, index) => (
-            <div 
-              className={`skill ${animation}`} 
-              key={index}
-              onMouseEnter={() => setIsHovered(index)}
-              onMouseLeave={() => setIsHovered(null)}
-            >
-              <CircularProgressbar
-                value={skill.percentage}
-                text={`${skill.percentage}%`}
-                styles={buildStyles({
-                  textColor: '#64ffda',
-                  pathColor: skill.color,
-                  trailColor: 'rgba(17, 34, 64, 0.8)',
-                  textSize: '16px',
-                  pathTransitionDuration: 1,
-                  pathTransition: 'stroke-dashoffset 0.5s ease 0s',
-                })}
-              />
-              <p className="skill-name">
-                <Code size={16} style={{ marginRight: '5px', verticalAlign: 'middle' }} />
-                {skill.name}
-              </p>
-              {isHovered === index && (
-                <div 
-                  style={{
-                    position: 'absolute',
-                    bottom: '120%',
-                    left: '50%',
-                    transform: 'translateX(-50%)',
-                    background: 'rgba(17, 34, 64, 0.95)',
-                    padding: '15px',
-                    borderRadius: '12px',
-                    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
-                    border: '1px solid rgba(100, 255, 218, 0.2)',
-                    zIndex: 10,
-                    width: '220px',
-                    textAlign: 'center',
-                    fontSize: '0.9em',
-                    color: '#8892b0',
-                    backdropFilter: 'blur(10px)',
-                    marginBottom: '15px',
-                    opacity: 0,
-                    animation: 'tooltipAppear 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards'
-                  }}
-                >
-                  <span style={{ color: '#64ffda', fontWeight: '600', marginBottom: '5px', display: 'block' }}>
-                    {skill.name}
-                  </span>
-                  {skill.description}
-                  <div 
-                    style={{
-                      position: 'absolute',
-                      bottom: '-6px',
-                      left: '50%',
-                      transform: 'translateX(-50%) rotate(45deg)',
-                      width: '12px',
-                      height: '12px',
-                      background: 'rgba(17, 34, 64, 0.95)',
-                      border: '1px solid rgba(100, 255, 218, 0.2)',
-                      borderTop: 'none',
-                      borderLeft: 'none',
-                      boxShadow: '4px 4px 8px rgba(0, 0, 0, 0.1)',
-                      zIndex: -1
-                    }}
-                  />
+          {getVisibleSkills().map((skill, index) => {
+            const Icon = skill.icon;
+            return (
+              <div 
+                className={`skill ${animation}`} 
+                key={index}
+                onMouseEnter={() => setIsHovered(index)}
+                onMouseLeave={() => setIsHovered(null)}
+                role="article"
+                aria-label={`${skill.name}: ${skill.percentage}% de dominio`}
+              >
+                <div className="skill-icon">
+                  <Icon size={24} color={skill.color} />
                 </div>
-              )}
-            </div>
-          ))}
+                <CircularProgressbar
+                  value={skill.percentage}
+                  text={`${skill.percentage}%`}
+                  styles={buildStyles({
+                    textColor: '#64ffda',
+                    pathColor: skill.color,
+                    trailColor: 'rgba(17, 34, 64, 0.8)',
+                    textSize: '16px',
+                    pathTransitionDuration: 1.5,
+                    strokeLinecap: 'round',
+                  })}
+                />
+                <p className="skill-name">
+                  {skill.name}
+                </p>
+                {isHovered === index && (
+                  <div className="skill-tooltip" role="tooltip">
+                    <span className="tooltip-title">
+                      {skill.name}
+                    </span>
+                    <p className="tooltip-description">{skill.description}</p>
+                    <div className="tooltip-features">
+                      {skill.features.map((feature, fIndex) => (
+                        <span key={fIndex} className="feature-tag">
+                          {feature}
+                        </span>
+                      ))}
+                    </div>
+                    <div className="tooltip-arrow" />
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
-        <button className="nav-button next" onClick={handleNext} aria-label="Next skill">
+        <button 
+          className="nav-button next" 
+          onClick={handleNext} 
+          aria-label="Siguiente habilidad"
+        >
           <ChevronRight size={24} />
         </button>
+      </div>
+      <div className="skills-indicator">
+        {skillsData.map((_, index) => (
+          <span 
+            key={index} 
+            className={`indicator ${index >= currentIndex && index < currentIndex + 3 ? 'active' : ''}`}
+            role="presentation"
+          />
+        ))}
       </div>
     </section>
   );

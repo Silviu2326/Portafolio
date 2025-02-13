@@ -9,6 +9,8 @@
   opacity: 0;
   transform: translateY(30px);
   transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  background-size: 400% 400%;
+  animation: gradientBg 15s ease infinite;
 }
 
 .education.visible {
@@ -92,6 +94,19 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
+  position: relative;
+}
+
+.education-grid::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 2px;
+  height: 100%;
+  background: rgba(100, 255, 218, 0.1);
+  transform: translateX(-50%);
+  z-index: 0;
 }
 
 .education-item {
@@ -104,6 +119,8 @@
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   opacity: 0;
   transform: translateY(30px);
+  position: relative;
+  z-index: 1;
 }
 
 .education.visible .education-item {
@@ -120,9 +137,14 @@
 }
 
 .education-item:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 10px 30px rgba(100, 255, 218, 0.2);
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(100, 255, 218, 0.15);
   border-color: rgba(100, 255, 218, 0.3);
+  background: rgba(17, 34, 64, 0.95);
+}
+
+.education-item:hover h3::before {
+  transform: translateX(5px) rotate(90deg);
 }
 
 .education-item h3 {
@@ -182,6 +204,39 @@
   z-index: 1;
 }
 
+.education-item .skills-container {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.education-item .skill-tag {
+  background: rgba(100, 255, 218, 0.1);
+  padding: 6px 14px;
+  border-radius: 12px;
+  font-size: 0.9em;
+  color: #64ffda;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.education-item .skill-tag:hover {
+  background: rgba(100, 255, 218, 0.2);
+  transform: translateY(-2px);
+}
+
+.education-item .skill-tag svg {
+  transition: transform 0.3s ease;
+}
+
+.education-item .skill-tag:hover svg {
+  transform: rotate(20deg);
+}
+
 @keyframes gradientBg {
   0% {
     background-position: 0% 50%;
@@ -198,18 +253,33 @@
   .education {
     padding: 60px 20px;
   }
-
+  
   .education-grid {
     grid-template-columns: 1fr;
-    padding: 0 10px;
+    gap: 30px;
   }
-
+  
+  .education-grid::before {
+    display: none;
+  }
+  
   .education h2 {
     font-size: 2em;
-    margin-bottom: 40px;
   }
-
+  
   .education-item {
     padding: 30px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .education,
+  .education-item,
+  .education-item:hover,
+  .skill-tag,
+  .skill-tag:hover {
+    transition: none;
+    animation: none;
+    transform: none;
   }
 }

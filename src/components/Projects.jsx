@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Code, Server, Database, ExternalLink, Github } from 'lucide-react';
+import { Code, Server, Database, ExternalLink, Github, Sparkles } from 'lucide-react';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import './Projects.css';
@@ -52,6 +52,7 @@ const projectsData = [
 const Projects = () => {
   const sectionRef = useRef(null);
   const [hoveredTech, setHoveredTech] = useState(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -78,25 +79,58 @@ const Projects = () => {
     };
   }, []);
 
+  const handleMouseMove = (e, projectElement) => {
+    const rect = projectElement.getBoundingClientRect();
+    setMousePosition({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
+    projectElement.style.setProperty('--mouse-x', `${mousePosition.x}px`);
+    projectElement.style.setProperty('--mouse-y', `${mousePosition.y}px`);
+  };
+
   return (
     <section ref={sectionRef} className="projects">
       <h2>
-        <Server className="section-icon" size={32} style={{ marginRight: '10px', color: '#64ffda' }} />
+        <Sparkles className="section-icon" size={32} style={{ marginRight: '10px', color: '#64ffda' }} />
         Proyectos
       </h2>
       
       {projectsData.map((project, index) => (
-        <div key={index} className="project-item">
-          <project.icon className="project-icon" color="#64ffda" size={48} />
+        <div 
+          key={index} 
+          className="project-item"
+          onMouseMove={(e) => handleMouseMove(e, e.currentTarget)}
+          role="article"
+          aria-label={`Proyecto: ${project.title}`}
+        >
+          <project.icon 
+            className="project-icon" 
+            color="#64ffda" 
+            size={48} 
+            aria-hidden="true"
+          />
           <div className="project-content">
             <h3>
               {project.title}
-              <div className="project-links">
-                <a href={project.githubUrl} target="_blank" rel="noreferrer" className="icon-link">
+              <div className="project-links" role="group" aria-label="Enlaces del proyecto">
+                <a 
+                  href={project.githubUrl} 
+                  target="_blank" 
+                  rel="noreferrer" 
+                  className="icon-link"
+                  aria-label="Ver código en GitHub"
+                >
                   <Github size={20} />
                 </a>
                 {project.demoUrl && (
-                  <a href={project.demoUrl} target="_blank" rel="noreferrer" className="icon-link">
+                  <a 
+                    href={project.demoUrl} 
+                    target="_blank" 
+                    rel="noreferrer" 
+                    className="icon-link"
+                    aria-label="Ver demo del proyecto"
+                  >
                     <ExternalLink size={20} />
                   </a>
                 )}
@@ -111,17 +145,26 @@ const Projects = () => {
               <p>{project.description}</p>
             )}
 
-            <div className="technologies-list">
+            <div 
+              className="technologies-list"
+              role="list"
+              aria-label="Tecnologías utilizadas"
+            >
               {project.technologies.map((tech, i) => (
                 <span 
                   key={i} 
                   className="tech-tag"
                   onMouseEnter={() => setHoveredTech(tech)}
                   onMouseLeave={() => setHoveredTech(null)}
+                  role="listitem"
                 >
                   {tech}
                   {hoveredTech === tech && (
-                    <div className="tech-tooltip">
+                    <div 
+                      className="tech-tooltip"
+                      role="tooltip"
+                      aria-hidden="true"
+                    >
                       Tecnología utilizada: {tech}
                     </div>
                   )}
@@ -130,7 +173,11 @@ const Projects = () => {
             </div>
 
             {project.images.length > 0 && (
-              <div className="carousel-container">
+              <div 
+                className="carousel-container"
+                role="region"
+                aria-label="Galería de imágenes del proyecto"
+              >
                 <Carousel 
                   showThumbs={false} 
                   autoPlay 
@@ -138,19 +185,32 @@ const Projects = () => {
                   interval={5000}
                   transitionTime={500}
                   showStatus={false}
+                  swipeable={true}
+                  emulateTouch={true}
+                  useKeyboardArrows={true}
                 >
                   {project.images.map((img, index) => (
                     <div key={index}>
-                      <img src={img} alt={`${project.title} - Captura ${index + 1}`} />
+                      <img 
+                        src={img} 
+                        alt={`${project.title} - Captura ${index + 1}`}
+                        loading="lazy"
+                      />
                     </div>
                   ))}
                 </Carousel>
               </div>
             )}
 
-            <a href={project.githubUrl} target="_blank" rel="noreferrer" className="project-link">
+            <a 
+              href={project.githubUrl} 
+              target="_blank" 
+              rel="noreferrer" 
+              className="project-link"
+              aria-label="Ver detalles del proyecto en GitHub"
+            >
               Ver proyecto
-              <ExternalLink size={16} style={{ marginLeft: '8px', verticalAlign: 'middle' }} />
+              <ExternalLink size={16} style={{ marginLeft: '8px', verticalAlign: 'middle' }} aria-hidden="true" />
             </a>
           </div>
         </div>

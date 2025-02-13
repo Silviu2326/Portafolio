@@ -1,95 +1,60 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap');
+
+:root {
+  --primary: #64ffda;
+  --primary-dark: #0a192f;
+  --secondary-dark: #112240;
+  --text-primary: #e6f1ff;
+  --text-secondary: #8892b0;
+  --transition: cubic-bezier(0.4, 0, 0.2, 1);
+}
 
 .experience {
-  padding: 100px 20px;
-  background: linear-gradient(135deg, #0a192f 0%, #112240 100%);
-  color: #8892b0;
+  padding: 120px 20px;
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
+  color: var(--text-secondary);
   position: relative;
   overflow: hidden;
+  min-height: 100vh;
+}
+
+.experience-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
   opacity: 0;
   transform: translateY(30px);
-  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.8s var(--transition);
 }
 
-.experience.visible {
+.experience.visible .experience-container {
   opacity: 1;
   transform: translateY(0);
 }
 
-.experience::before {
-  content: '<experience>';
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  color: rgba(100, 255, 218, 0.3);
-  font-family: 'Fira Code', monospace;
-  font-size: 1rem;
-  opacity: 0;
-  transform: translateX(-20px);
-  transition: all 0.5s ease;
-}
-
-.experience.visible::before {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.experience::after {
-  content: '</experience>';
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  color: rgba(100, 255, 218, 0.3);
-  font-family: 'Fira Code', monospace;
-  font-size: 1rem;
-  opacity: 0;
-  transform: translateX(20px);
-  transition: all 0.5s ease;
-}
-
-.experience.visible::after {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.experience h2 {
+.section-title {
   font-family: 'Poppins', sans-serif;
-  font-size: 2.5em;
-  color: #64ffda;
-  text-align: center;
+  font-size: clamp(2rem, 5vw, 2.5rem);
+  color: var(--text-primary);
   margin-bottom: 60px;
-  position: relative;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.5s ease 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
-.experience.visible h2 {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.experience h2::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 3px;
-  background: linear-gradient(90deg, transparent, #64ffda, transparent);
-  transition: width 0.8s ease 0.6s;
-}
-
-.experience.visible h2::after {
-  width: 200px;
+.title-number {
+  color: var(--primary);
+  font-family: 'Fira Code', monospace;
+  font-size: 1.2rem;
+  font-weight: 400;
 }
 
 .timeline {
+  position: relative;
+  padding: 40px 0;
   max-width: 1000px;
   margin: 0 auto;
-  position: relative;
-  padding: 20px 0;
 }
 
 .timeline::before {
@@ -98,169 +63,257 @@
   left: 50%;
   transform: translateX(-50%);
   width: 2px;
-  height: 0;
-  background: linear-gradient(to bottom, transparent, #64ffda, transparent);
-  transition: height 1.5s ease;
-}
-
-.experience.visible .timeline::before {
   height: 100%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--primary),
+    var(--primary),
+    transparent
+  );
+  opacity: 0.3;
 }
 
 .timeline-item {
   width: 100%;
   position: relative;
   margin-bottom: 60px;
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.5s ease;
-}
-
-.experience.visible .timeline-item {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.timeline-item:nth-child(1) {
-  transition-delay: 0.4s;
-}
-
-.timeline-item:nth-child(2) {
-  transition-delay: 0.6s;
+  perspective: 1000px;
 }
 
 .timeline-item::before {
   content: '';
   position: absolute;
   left: 50%;
-  top: 0;
-  transform: translate(-50%, 0);
+  transform: translateX(-50%);
   width: 20px;
   height: 20px;
-  background: #64ffda;
+  background: var(--primary);
   border-radius: 50%;
+  z-index: 1;
+  transition: all 0.3s var(--transition);
   box-shadow: 0 0 0 4px rgba(100, 255, 218, 0.2);
-  opacity: 0;
-  transition: all 0.5s ease;
 }
 
-.experience.visible .timeline-item::before {
-  opacity: 1;
-  animation: pulseNode 2s infinite;
-}
-
-@keyframes pulseNode {
-  0% {
-    box-shadow: 0 0 0 4px rgba(100, 255, 218, 0.2);
-  }
-  50% {
-    box-shadow: 0 0 0 8px rgba(100, 255, 218, 0.1);
-  }
-  100% {
-    box-shadow: 0 0 0 4px rgba(100, 255, 218, 0.2);
-  }
+.timeline-item.active::before {
+  transform: translateX(-50%) scale(1.2);
+  box-shadow: 0 0 0 6px rgba(100, 255, 218, 0.3);
 }
 
 .timeline-item-content {
   position: relative;
-  width: calc(50% - 40px);
-  padding: 30px;
+  width: calc(50% - 50px);
   background: rgba(17, 34, 64, 0.8);
   backdrop-filter: blur(10px);
-  border-radius: 15px;
+  padding: 30px;
+  border-radius: 16px;
   border: 1px solid rgba(100, 255, 218, 0.1);
+  transition: all 0.5s var(--transition);
+  transform-style: preserve-3d;
+  transform: rotateY(10deg);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  transition: all 0.4s ease;
 }
 
 .timeline-item:nth-child(odd) .timeline-item-content {
   margin-left: auto;
-  transform: translateX(30px);
+  transform: rotateY(-10deg);
 }
 
-.timeline-item:nth-child(even) .timeline-item-content {
-  margin-right: auto;
-  transform: translateX(-30px);
-}
-
-.experience.visible .timeline-item:nth-child(odd) .timeline-item-content,
-.experience.visible .timeline-item:nth-child(even) .timeline-item-content {
-  transform: translateX(0);
-}
-
-.timeline-item-content:hover {
-  transform: translateY(-5px) !important;
-  box-shadow: 0 10px 30px rgba(100, 255, 218, 0.2);
+.timeline-item.active .timeline-item-content {
+  transform: rotateY(0);
   border-color: rgba(100, 255, 218, 0.3);
+  box-shadow: 0 10px 30px rgba(100, 255, 218, 0.1);
 }
 
-.timeline-item-content h3 {
-  color: #64ffda;
-  font-size: 1.5em;
+.experience-header {
+  margin-bottom: 25px;
+}
+
+.experience-header h3 {
+  color: var(--primary);
+  font-size: 1.4rem;
+  font-family: 'Poppins', sans-serif;
   margin-bottom: 15px;
-  font-family: 'Poppins', sans-serif;
-}
-
-.timeline-item-content .date {
-  color: #64ffda;
-  font-style: italic;
-  margin-bottom: 20px;
-  font-family: 'Poppins', sans-serif;
-  opacity: 0.8;
-  display: inline-block;
-  padding: 4px 12px;
-  background: rgba(100, 255, 218, 0.1);
-  border-radius: 15px;
-}
-
-.timeline-item-content p {
-  line-height: 1.8;
-  color: #8892b0;
-  font-family: 'Poppins', sans-serif;
-}
-
-.timeline-item-content .tech-tags {
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 20px;
+  align-items: center;
+  gap: 10px;
 }
 
-.tech-tag {
-  background: rgba(100, 255, 218, 0.1);
-  padding: 4px 12px;
-  border-radius: 12px;
-  font-size: 0.9em;
-  color: #64ffda;
+.company-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  color: var(--text-primary);
+  font-family: 'Fira Code', monospace;
+  font-size: 0.95rem;
+}
+
+.company-link {
+  color: var(--text-primary);
+  text-decoration: none;
   display: flex;
   align-items: center;
   gap: 5px;
-  transition: all 0.3s ease;
+  transition: color 0.3s ease;
+}
+
+.company-link:hover {
+  color: var(--primary);
+}
+
+.date {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+
+.icon {
+  color: var(--primary);
+}
+
+.experience-description ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.experience-description li {
+  position: relative;
+  padding-left: 25px;
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+.experience-description li::before {
+  content: '▹';
+  position: absolute;
+  left: 0;
+  color: var(--primary);
+  font-size: 1.2rem;
+}
+
+.tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 25px;
+}
+
+.tech-tag {
+  background: rgba(100, 255, 218, 0.05);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  color: var(--primary);
+  font-family: 'Fira Code', monospace;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.3s var(--transition);
+  border: 1px solid transparent;
 }
 
 .tech-tag:hover {
-  background: rgba(100, 255, 218, 0.2);
+  background: rgba(100, 255, 218, 0.1);
   transform: translateY(-2px);
+  border-color: var(--primary);
 }
 
-@media (max-width: 768px) {
+.background-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 2px;
+  padding: 2px;
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+.grid-item {
+  background: var(--primary);
+  width: 100%;
+  padding-bottom: 100%;
+  transform: scale(0);
+  animation: gridAppear 0.5s var(--transition) forwards;
+}
+
+@keyframes gridAppear {
+  to {
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 968px) {
   .timeline::before {
     left: 30px;
   }
 
   .timeline-item::before {
     left: 30px;
-    transform: translate(-50%, 0);
   }
 
   .timeline-item-content {
-    width: calc(100% - 60px);
-    margin-left: 60px !important;
-    transform: translateX(0) !important;
+    width: calc(100% - 80px);
+    margin-left: 80px !important;
+    transform: none !important;
   }
 
-  .experience h2 {
-    font-size: 2em;
+  .timeline-item.active .timeline-item-content {
+    transform: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .experience {
+    padding: 80px 20px;
+  }
+
+  .section-title {
     margin-bottom: 40px;
+  }
+
+  .timeline-item-content {
+    padding: 20px;
+  }
+
+  .experience-header h3 {
+    font-size: 1.2rem;
+  }
+
+  .tech-tags {
+    gap: 8px;
+  }
+
+  .tech-tag {
+    padding: 4px 10px;
+    font-size: 0.8rem;
+  }
+
+  .background-grid {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .experience-container,
+  .timeline-item-content,
+  .tech-tag,
+  .grid-item {
+    animation: none;
+    transition: none;
+    transform: none !important;
+  }
+
+  .timeline-item::before {
+    animation: none;
   }
 }
