@@ -39,11 +39,11 @@ const Footer = () => {
           size={20}
         />
         <a 
-          href="mailto:oprescusilviu@gmail.com" 
+          href="mailto:silviu.oprescu@gmail.com" 
           className="contact-link"
-          aria-label="Enviar email a oprescusilviu@gmail.com"
+          aria-label="Enviar email a silviu.oprescu@gmail.com"
         >
-          oprescusilviu@gmail.com
+          silviu.oprescu@gmail.com
         </a>
       </div>
 

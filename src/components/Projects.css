@@ -81,6 +81,12 @@
     0 10px 30px rgba(100, 255, 218, 0.1),
     0 0 0 1px rgba(100, 255, 218, 0.1),
     0 20px 40px rgba(0, 0, 0, 0.2);
+  animation: projectHover 0.5s ease infinite;
+}
+
+@keyframes projectHover {
+  0%, 100% { box-shadow: 0 10px 30px rgba(100, 255, 218, 0.1), 0 0 0 1px rgba(100, 255, 218, 0.1), 0 20px 40px rgba(0, 0, 0, 0.2); }
+  50% { box-shadow: 0 15px 40px rgba(100, 255, 218, 0.2), 0 0 0 1px rgba(100, 255, 218, 0.2), 0 25px 50px rgba(0, 0, 0, 0.3); }
 }
 
 .project-item:nth-child(2) {
@@ -93,7 +99,12 @@
 
 .project-icon {
   margin-bottom: 1.5rem;
-  animation: iconFloat 3s ease-in-out infinite;
+  animation: iconFloat 3s ease-in-out infinite, iconGlow 2s ease-in-out infinite;
+}
+
+@keyframes iconGlow {
+  0%, 100% { filter: drop-shadow(0 0 5px rgba(100, 255, 218, 0.3)); }
+  50% { filter: drop-shadow(0 0 15px rgba(100, 255, 218, 0.6)); }
 }
 
 .project-content {

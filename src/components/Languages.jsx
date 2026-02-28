@@ -4,6 +4,18 @@ import './Languages.css';
 
 const languagesData = [
   {
+    code: 'ro',
+    name: 'Rumano',
+    level: 'Nativo',
+    proficiency: 100,
+    details: {
+      speaking: 100,
+      writing: 100,
+      reading: 100,
+      listening: 100
+    }
+  },
+  {
     code: 'es',
     name: 'Español',
     level: 'Nativo',

@@ -222,6 +222,13 @@
   background: rgba(100, 255, 218, 0.1);
   transform: translateY(-2px);
   border-color: var(--primary);
+  box-shadow: 0 5px 15px rgba(100, 255, 218, 0.2);
+  animation: tagGlow 1s ease infinite;
+}
+
+@keyframes tagGlow {
+  0%, 100% { box-shadow: 0 5px 15px rgba(100, 255, 218, 0.2); }
+  50% { box-shadow: 0 5px 25px rgba(100, 255, 218, 0.4); }
 }
 
 .background-grid {

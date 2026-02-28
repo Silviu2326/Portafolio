@@ -4,48 +4,74 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import './Projects.css';
 
-import imagen1 from './Capturadepantalla2024-09-03202317.png';
-import imagen2 from './Captura de pantalla 2024-09-03 204908.png';
-import imagen3 from './Captura de pantalla 2024-09-03 204929.png';
-import imagen4 from './Captura de pantalla 2024-09-03 204941.png';
-import imagen5 from './Captura de pantalla 2024-09-03 205016.png';
-import imagen6 from './Captura de pantalla 2024-09-03 205115.png';
-import imagen7 from './Captura de pantalla 2024-09-03 205130.png';
-import imagen8 from './Captura de pantalla 2024-09-03 213217.png';
-import imagen9 from './Captura de pantalla 2024-09-03 213231.png';
-import imagen10 from './Captura de pantalla 2024-09-03 213242.png';
-import imagen11 from './Captura de pantalla 2024-09-03 213253.png';
-
 const projectsData = [
   {
-    title: 'Algoritmo de Extracción de Datos - Orange',
-    description: 'Desarrollé un algoritmo avanzado de extracción de datos utilizando técnicas de web scraping con Python. El objetivo principal era recolectar datos críticos de clientes para la empresa Orange, con el fin de realizar análisis de mercado más precisos. El algoritmo fue diseñado para iterar sobre cada cliente, teniendo en cuenta que algunos datos podrían no estar disponibles en todos los casos. Los datos recopilados se almacenaban en hojas de Excel para garantizar la privacidad y seguridad de la información sensible.',
-    icon: Code,
-    technologies: ['Python', 'Web Scraping', 'Excel', 'Data Analysis'],
-    githubUrl: 'https://github.com/tu-usuario/algoritmo-extraccion-datos',
+    title: 'SaaS ERP para Entrenadores y Centros Deportivos',
+    description: [
+      'Plataforma CRM avanzada para gestión de negocios deportivos. Incluye generador automático de rutinas, sistema de reservas con calendario inteligente, integración con pasarela de pago Stripe, y dashboard analítico con más de 30 KPIs.',
+      'La aplicación permite gestionar clientes, rutinas, reservas y facturación de manera eficiente, con una interfaz moderna y intuitiva.'
+    ],
+    icon: Server,
+    technologies: ['React', 'Node.js', 'MongoDB', 'Stripe', 'Chart.js'],
+    githubUrl: 'https://github.com/silviu-oprescu/erp-entrenadores',
     images: []
   },
   {
-    title: 'CRM para Entrenadores Personales',
+    title: 'Orange - Sistema Next Best Action',
     description: [
-      'Desarrollé un CRM robusto diseñado específicamente para entrenadores personales, incorporando tres módulos clave: Marketing, Finanzas y Ejercicios y Dietas. La aplicación está construida con React en el frontend, Node.js en el backend y MongoDB como base de datos.',
-      'El módulo de Marketing permite a los entrenadores gestionar sus campañas y estrategias de marketing. El módulo de Finanzas es altamente personalizable, integrando funcionalidades avanzadas mediante widgets y se conecta con APIs como Plaid para ofrecer un seguimiento financiero detallado. El módulo de Ejercicios y Dietas permite la creación de planes personalizados utilizando la API de OpenAI para generar recomendaciones inteligentes.'
+      'Sistema predictivo empresarial con motor de recomendaciones en tiempo real con latencia <100ms. Integración con Salesforce, procesamiento de más de 5 millones de registros, segmentación dinámica y APIs RESTful/GraphQL.',
+      'Desarrollé algoritmos de machine learning para predecir las mejores acciones de marketing para cada cliente.'
     ],
-    icon: Server,
-    technologies: ['React', 'Node.js', 'MongoDB', 'OpenAI API', 'Plaid API'],
-    githubUrl: 'https://github.com/tu-usuario/crm-entrenadores',
-    images: [imagen1, imagen2, imagen3, imagen4, imagen5, imagen6, imagen7]
+    icon: Code,
+    technologies: ['Python', 'Machine Learning', 'Salesforce', 'GraphQL', 'REST API'],
+    githubUrl: 'https://github.com/silviu-oprescu/next-best-action',
+    images: []
   },
   {
-    title: 'SaaS para Gestión Alimentaria',
+    title: 'SaaS Gestión Integral de Terapeutas',
     description: [
-      'Desarrollé un SaaS innovador para la gestión alimentaria, utilizando React y Node.js como las tecnologías principales, junto con MongoDB para el almacenamiento de datos. Esta plataforma está diseñada para ayudar a los usuarios a gestionar de manera integral su alimentación, ofreciendo herramientas para la planificación y el seguimiento de dietas.',
-      'La aplicación permite a los usuarios crear y personalizar planes de dieta, registrar alimentos diarios, y ofrece análisis detallados del progreso del usuario hacia sus metas de salud y bienestar.'
+      'Solución web y móvil completa para profesionales de la salud. Incluye agenda inteligente, historia clínica digital, consultas por video WebRTC, portal de pacientes, facturación automática y app móvil con sincronización offline.',
+      'La plataforma está diseñada para optimizar la gestión de clínicas y consultorios terapéuticos.'
     ],
     icon: Database,
-    technologies: ['React', 'Node.js', 'MongoDB', 'Chart.js', 'Material-UI'],
-    githubUrl: 'https://github.com/tu-usuario/saas-gestion-alimentaria',
-    images: [imagen8, imagen9, imagen10, imagen11]
+    technologies: ['React', 'Node.js', 'MongoDB', 'WebRTC', 'React Native'],
+    githubUrl: 'https://github.com/silviu-oprescu/saas-terapeutas',
+    images: []
+  },
+  {
+    title: 'ERP Especializado para Despachos de Abogados',
+    description: [
+      'Sistema ERP vertical para despachos de abogados. Gestiona expedientes judiciales, calendario judicial con alertas, facturación con control de honorarios, portal de clientes e integración con firma digital.',
+      'Desarrollé módulos personalizados para optimizar los procesos legales y la gestión documental.'
+    ],
+    icon: Server,
+    technologies: ['React', 'Node.js', 'MongoDB', 'PDF Digital', 'JWT'],
+    githubUrl: 'https://github.com/silviu-oprescu/erp-abogados',
+    images: []
+  },
+  {
+    title: 'Mr Cool Cat - Cervecería',
+    description: [
+      'Proyecto integral para una cervecería artesanal que incluye tres aplicaciones complementarias: aplicación web para gestión del negocio y pedidos, aplicación móvil para clientes (iOS/Android), y juego 3D interactivo para promoción de la marca.',
+      'El juego 3D ofrece una experiencia inmersiva donde los usuarios pueden explorar la fábrica de cerveza virtual y ganar premios.'
+    ],
+    icon: Sparkles,
+    technologies: ['React', 'Node.js', 'MongoDB', 'Three.js', 'React Native', 'Unity'],
+    githubUrl: 'https://github.com/silviu-oprescu/mr-cool-cat',
+    demoUrl: 'https://mrcoolcat.example.com',
+    images: []
+  },
+  {
+    title: 'Rotulemos - Plataforma Web',
+    description: [
+      'Plataforma web desarrollada en PHP para la gestión y solicitud de rotulos publicitarios. Permite a los usuarios diseñar, presupuestar y encargar rotulos personalizados de manera online.',
+      'Incluye editor gráfico integrado, sistema de presupuestos automáticos y gestión de pedidos para el administrador.'
+    ],
+    icon: Code,
+    technologies: ['PHP', 'MySQL', 'JavaScript', 'HTML5', 'CSS3'],
+    githubUrl: 'https://github.com/silviu-oprescu/rotulemos',
+    demoUrl: 'https://rotulemos.example.com',
+    images: []
   }
 ];
 
