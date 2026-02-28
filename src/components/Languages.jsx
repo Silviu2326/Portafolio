@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Globe2, Languages as LangIcon, Sparkles } from 'lucide-react';
+import { Globe2, Sparkles } from 'lucide-react';
 import './Languages.css';
 
 const languagesData = [
@@ -147,13 +147,11 @@ const LanguageCard = ({ language, isActive, onClick }) => {
 const Languages = () => {
   const sectionRef = useRef(null);
   const [activeLanguage, setActiveLanguage] = useState(null);
-  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setIsVisible(true);
           entry.target.classList.add('visible');
         }
       },

@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { 
-  Cpu, 
   Book, 
   Briefcase, 
   Brain, 
@@ -8,7 +7,6 @@ import {
   Bot, 
   Rocket,
   Coffee,
-  Lightbulb,
   Sparkles
 } from 'lucide-react';
 import './Interests.css';
@@ -63,13 +61,11 @@ const Interests = () => {
   const descriptionRef = useRef(null);
   const [hoveredItem, setHoveredItem] = useState(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setIsVisible(true);
           entry.target.classList.add('visible');
         }
       },

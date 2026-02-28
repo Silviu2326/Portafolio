@@ -67,7 +67,8 @@ function App() {
     return () => {
       clearTimeout(timer);
       document.body.removeChild(cursor);
-      cursorTrailRef.current.forEach(trail => document.body.removeChild(trail));
+      const trails = cursorTrailRef.current;
+      trails.forEach(trail => document.body.removeChild(trail));
       document.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseover', handleMouseOver);
       document.removeEventListener('mouseout', handleMouseOut);
