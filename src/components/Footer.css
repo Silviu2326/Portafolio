@@ -1,10 +1,10 @@
 .footer {
     background-color: #0a192f;
-    background: linear-gradient(180deg, #0a192f 0%, #0d1b2a 100%);
+    background: linear-gradient(180deg, #0a192f 0%, #0d1b2a 50%, #0a192f 100%);
     color: #8892b0;
-    padding: 40px 20px;
+    padding: 50px 20px;
     text-align: center;
-    border-top: 1px solid #1d2d50;
+    border-top: 1px solid rgba(100, 255, 218, 0.1);
     position: relative;
     overflow: hidden;
 }
@@ -51,11 +51,11 @@
 .contact-item {
     display: inline-flex;
     align-items: center;
-    margin: 10px 20px;
-    padding: 10px 20px;
-    border-radius: 8px;
-    background: rgba(29, 45, 80, 0.3);
-    backdrop-filter: blur(10px);
+    margin: 12px 15px;
+    padding: 14px 24px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(29, 45, 80, 0.4) 0%, rgba(17, 34, 64, 0.3) 100%);
+    backdrop-filter: blur(15px);
     border: 1px solid rgba(100, 255, 218, 0.1);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;

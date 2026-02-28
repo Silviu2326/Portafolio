@@ -1,6 +1,6 @@
 .projects {
-  padding: 4rem 2rem;
-  background: linear-gradient(180deg, rgba(10, 25, 47, 0.95) 0%, rgba(17, 34, 64, 0.95) 100%);
+  padding: 5rem 3rem;
+  background: linear-gradient(180deg, rgba(10, 25, 47, 0.98) 0%, rgba(17, 34, 64, 0.95) 50%, rgba(10, 25, 47, 0.98) 100%);
   min-height: 100vh;
   position: relative;
   overflow: hidden;
@@ -38,19 +38,20 @@
 }
 
 .project-item {
-  max-width: 1000px;
-  margin: 0 auto 4rem;
+  max-width: 900px;
+  margin: 0 auto 3.5rem;
   padding: 2.5rem;
-  background: rgba(17, 34, 64, 0.7);
-  border-radius: 16px;
-  border: 1px solid rgba(100, 255, 218, 0.1);
-  backdrop-filter: blur(10px);
+  background: linear-gradient(145deg, rgba(17, 34, 64, 0.8) 0%, rgba(17, 34, 64, 0.5) 100%);
+  border-radius: 20px;
+  border: 1px solid rgba(100, 255, 218, 0.08);
+  backdrop-filter: blur(20px);
   transform: translateY(30px);
   opacity: 0;
   animation: projectAppear 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
   transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   position: relative;
   overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
 }
 
 .project-item::before {
